@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'article/_collection.html.twig' %}
+
+{% block title %}Edition d'un article{% endblock %}
+
+{% block body %} 
+    <div class="container">
+        <h1>Modifier l'article</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/ad.js"></script>
+{% endblock %}

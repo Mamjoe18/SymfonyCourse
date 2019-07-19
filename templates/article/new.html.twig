@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form "article/_collection.html.twig" %}
+
+{% block title %}Creation d'un article{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Créer un nouvel article</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('#add-image').click(function(){
+            const index = +$('#widgets-counter').val();
+
+            const tmpl = $('#article_images').data('prototype').replace(/__name__/g, index);
+
+            $('#article_images').append(tmpl);
+
+            $("#widgets-counter").val(index + 1);
+
+            handleDeleteButtons();
+        })
+
+        function handleDeleteButtons(){
+            // Au click sur le bouton avec l'attribut data-action="delete"
+            $('button[data-action="delete"]').click(function(){
+
+                // On récupére la cible contenu dans l'attribut data-target
+                const target = this.dataset.target;
+
+                // On supprime la cible
+                $(target).remove();
+
+            })
+        }
+        handleDeleteButtons();   
+    </script>
+{% endblock %}
